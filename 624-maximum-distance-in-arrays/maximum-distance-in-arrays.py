@@ -5,7 +5,8 @@ class Solution:
 
 
 
-        for idx,arr in enumerate(arrays):
+        for idx in range(1,len(arrays)):
+            arr = arrays[idx]
             if arr[-1 ] > maxval:
                 maxval = arr[-1]
                 maxindex = idx
