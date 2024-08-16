@@ -5,15 +5,14 @@ class Solution:
 
 
 
-        for idx in range(1,len(arrays)):
-            arr = arrays[idx]
+        for idx,arr in enumerate(arrays[1:]):
             if arr[-1 ] > maxval:
                 maxval = arr[-1]
-                maxindex = idx
+                maxindex = idx+1
 
             if arr[0 ] < minval:
                 minval = arr[0]
-                minindex = idx    
+                minindex = idx+1    
 
         ans = float("-inf")
         print(minindex,maxindex)
