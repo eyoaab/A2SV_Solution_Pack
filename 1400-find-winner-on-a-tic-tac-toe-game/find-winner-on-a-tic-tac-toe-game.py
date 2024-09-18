@@ -26,7 +26,6 @@ class Solution:
                 if count == 3:
                     return key
 
-        ########### Column #######################
 
         for j in range(len(matrix)):
             columns = [row[j] for row in matrix]
@@ -36,7 +35,6 @@ class Solution:
                 if count == 3:
                     return key
 
-        ########### diagonal #######################
         
         diagonal,anti_diagonal  = [], []
         for i in range(len(matrix)):
