@@ -1,34 +1,32 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         graph = defaultdict(list)
-        for start,end,waitght in times:
-            graph[start - 1].append([end - 1,waitght])
-        timeNeded = [6001 for i in range(n)]
-        timeNeded[k-1] = 0
+
+        for u,v,w in times:
+            graph[u - 1].append([v - 1,w])
+
+        distances = [float('inf') for i in range(n)]
 
         heap = []
-        heappush(heap,[0,k-1])
+        heappush(heap,[0,k - 1])
+        distances[k - 1]  = 0
         visited = set()
 
         while heap:
-            curDist , curNode = heappop(heap)
+            curDist,curNode = heappop(heap)
 
             if curNode in visited:
                 continue
+            visited.add(curNode)     
 
-            visited.add(curNode)
+            for child,wait in graph[curNode]:
+                distance =  curDist + wait
 
-            for child ,waight in graph[curNode]:
-                time = curDist +  waight
+                if distance != float('inf') and  distance < distances[child] :
+                    distances[child] = distance
+                    heappush(heap,[distance,child])
 
-                if time < timeNeded[child]:
-                    timeNeded[child] = time
-                    heappush(heap,[time,child])
-
-        if max(timeNeded) == 6000 + 1:
-            print(timeNeded)
+        if float('inf') in distances:
             return -1
 
-        return max(timeNeded)     
-
-            
+        return max(distances)                    
