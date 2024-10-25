@@ -3,12 +3,12 @@ class Solution:
         if not set(b).issubset(set(a)):
             return -1
         
-        repeat_count = ceil(len(b) / len(a))  
+        answer = ceil(len(b) / len(a))  
      
-        repeated_a = a * repeat_count
-        if b in repeated_a:
-            return repeat_count
-        elif b in repeated_a + a:
-            return repeat_count + 1
+        repeated = a * answer
+        if b in repeated:
+            return answer
+        elif b in repeated + a:
+            return answer + 1
         
         return -1
