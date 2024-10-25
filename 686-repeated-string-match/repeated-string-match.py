@@ -3,7 +3,7 @@ class Solution:
         if not set(b).issubset(set(a)):
             return -1
         
-        repeat_count = -(-len(b) // len(a))  
+        repeat_count = ceil(len(b) / len(a))  
      
         repeated_a = a * repeat_count
         if b in repeated_a:
