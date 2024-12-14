@@ -7,25 +7,28 @@
 class Solution:
     def maxSumBST(self, root: Optional[TreeNode]) -> int:
 
-        self.ans = 0
+        ans = 0
 
         def postOrder(node):
-            if not node:
-                return 0,float('inf'),float('-inf')
+            nonlocal ans
+            if node is None:
+                return 0, float('inf'), float('-inf')
 
-            leftSum ,leftMin , leftMax = postOrder(node.left) 
-            rightSum ,rightMin , rightMax  = postOrder(node.right)
+            leftSum, leftMin, leftMax =  postOrder(node.left)
+            rightSum, rightMin, rightMax =  postOrder(node.right)  
 
             if leftMax < node.val < rightMin:
-                currentSum = leftSum + rightSum + node.val
-                self.ans = max(self.ans , currentSum)
-
-                return currentSum , min(node.val,leftMin) , max(node.val,rightMax)
+                
+                currentSum = node.val + leftSum + rightSum
+                ans = max(ans,currentSum)
+                return currentSum,min(node.val,leftMin),max(node.val,rightMax)
 
             else:
-                return 0, float('-inf') , float('inf')
+                return 0, float('-inf'), float('inf')
 
         postOrder(root)
+        return ans        
 
-        return self.ans            
+
+
         
