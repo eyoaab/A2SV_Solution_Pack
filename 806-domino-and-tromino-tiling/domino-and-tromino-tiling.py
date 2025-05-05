@@ -1,13 +1,8 @@
-class Solution:
-    def numTilings(self, n: int) -> int:
-
-        F = {0: 1, 1: 1}
-        T = {1: 0}
-        B = {1: 0}
-
-        for i in range(2, n + 1): 
-            F[i] = F[i - 1] + F[i - 2] + T[i - 1] + B[i - 1]
-            T[i] = F[i - 2] + B[i - 1]
-            B[i] = F[i - 2] + T[i - 1]
-
-        return F[n] % (10 ** 9 + 7)
+class Solution(object):
+    def numTilings(self, n):
+        dp, MOD = [0] * (max(4, n + 1)), 10**9 + 7
+        for i, num in enumerate([1, 1, 2, 5]):
+            dp[i] = num
+        for i in range(4, n + 1):
+            dp[i] = (2 * dp[i - 1] + dp[i - 3]) % MOD
+        return dp[n]
