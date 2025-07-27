@@ -8,7 +8,7 @@ class Solution:
                 store.append(num)
          
         for i in range(1,len(store) - 1):
-            ans += store[i-1] < store[i] > store[i + 1]  # hill
-            ans += store[i-1] > store[i] < store[i + 1]   #vally 
+            ans += store[i - 1] < store[i] > store[i + 1]  # hill
+            ans += store[i - 1] > store[i] < store[i + 1]   #valely 
 
         return ans      
