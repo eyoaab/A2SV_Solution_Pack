@@ -16,4 +16,3 @@ class Solution:
         self.backtrack(nums, 0, 0, maxOR, count)
         
         return count[0]       
-
