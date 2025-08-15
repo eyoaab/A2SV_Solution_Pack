@@ -1,29 +1,26 @@
 class Solution:
-    def canFinish(self, n: int, prerequisites: List[List[int]]) -> bool:
-        graph = [[] for i in range(n)]
-        answer = 0
-        indegree = [0 for i in range(n)]
-        
-        for course,prerequisite in prerequisites:
-            indegree[course] += 1
-            graph[prerequisite].append(course)
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        inDegree = [0 for i in range(numCourses)]
+        graph = defaultdict(list) #prerequest to 
+        visited = set()
 
-        queue = deque()
+        for node1, node2 in prerequisites:
+            inDegree[node1] += 1
+            graph[node2].append(node1)
 
-        for i in range(n):
-            if indegree[i] == 0:
-                queue.append(i)
+        queue = [i for i,degree in enumerate(inDegree) if degree == 0 ]  
 
-        while queue:
-            current = queue.popleft()
-            answer += 1
+        while queue: 
+            node = queue.pop()
+            visited.add(node)
 
-            for  neg in graph[current]:
-                indegree[neg] -= 1
-
-                if indegree[neg] == 0:
+            for neg in graph[node]:
+                inDegree[neg] -= 1
+                if inDegree[neg] == 0:
                     queue.append(neg)
+                    
 
-        return answer == n            
 
-                  
+
+
+        return len(visited) == numCourses
