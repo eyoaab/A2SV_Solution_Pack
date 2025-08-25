@@ -5,29 +5,29 @@ class Solution:
         for index,rain in enumerate(rains):
             store[rain].append(index)
 
-        full = set()
+        visited = set()
         heap = []
-        ans = []
+        ans = [-1 for i in range(len(rains))]
 
         for index,rain in enumerate(rains):
             if rain == 0:
                 if heap:
                     next_index = heappop(heap)
-                    if rains[next_index] in full:
-                        ans.append(rains[next_index])
-                        full.remove(rains[next_index])
+                    if rains[next_index] in visited:
+                        ans[index] = rains[next_index]
+                        visited.remove(rains[next_index])
                 else:
-                    ans.append(1)
+                    ans[index] = 1
             else:
-                if rain in full:
+                if rain in visited:
                     return []
                 else:
-                    full.add(rain)
+                    visited.add(rain)
                     store[rain].pop(0)
 
                     if store[rain]:
                         heappush(heap, store[rain][0])
 
-                    ans.append(-1)
+                    ans[index] = -1
 
         return ans
