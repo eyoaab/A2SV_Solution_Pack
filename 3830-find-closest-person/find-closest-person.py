@@ -1,13 +1,13 @@
 class Solution:
     def findClosest(self, x: int, y: int, z: int) -> int:
         
-        xz = abs(z - x)
-        yz = abs(z - y)
+        distanceOfX = abs(z - x)
+        distanceOfY = abs(z - y)
 
-        if xz == yz:
+        if distanceOfX == distanceOfY:
             return 0
             
-        elif xz < yz:
+        elif distanceOfX < distanceOfY:
             return 1
         else:
             return 2
