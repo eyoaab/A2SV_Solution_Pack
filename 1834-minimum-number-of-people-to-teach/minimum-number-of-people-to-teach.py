@@ -1,6 +1,6 @@
 class Solution:
     def minimumTeachings(self, totalLanguages, userLanguages, friendships):
-        users_to_teach = set()
+        store = set()
 
         for user1, user2 in friendships:
             user1 -= 1  
@@ -13,14 +13,14 @@ class Solution:
                     break
 
             if not can_communicate:
-                users_to_teach.add(user1)
-                users_to_teach.add(user2)
+                store.add(user1)
+                store.add(user2)
 
         ans = len(userLanguages) + 1
 
         for language in range(1, totalLanguages + 1):
             count = 0
-            for user in users_to_teach:
+            for user in store:
                 if language not in userLanguages[user]:
                     count += 1
             ans = min(ans, count)
