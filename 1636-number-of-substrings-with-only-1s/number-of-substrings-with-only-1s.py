@@ -11,6 +11,7 @@ class Solution:
             elif s[i] == '0':
                 start = i
             i += 1
+            
         return result
 
         
