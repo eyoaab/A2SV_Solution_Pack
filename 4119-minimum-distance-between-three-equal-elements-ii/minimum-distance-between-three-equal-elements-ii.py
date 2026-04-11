@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 class Solution:
     def minimumDistance(self, nums):
         mp = defaultdict(list)
@@ -7,7 +5,7 @@ class Solution:
         for i, num in enumerate(nums):
             mp[num].append(i)
 
-        mini = float('inf')
+        store = float('inf')
 
         for temp in mp.values():
             m = len(temp)
@@ -19,6 +17,6 @@ class Solution:
                     c = temp[i + 2]
 
                     diff = 2 * (c - a)
-                    mini = min(mini, diff)
+                    store = min(store, diff)
 
-        return -1 if mini == float('inf') else mini
+        return -1 if store == float('inf') else store
