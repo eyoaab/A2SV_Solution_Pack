@@ -1,13 +1,13 @@
 class Solution:
     def minimumDistance(self, nums):
-        mp = defaultdict(list)
+        store = defaultdict(list)
 
         for i, num in enumerate(nums):
-            mp[num].append(i)
+            store[num].append(i)
 
-        store = float('inf')
+        mini = float('inf')
 
-        for temp in mp.values():
+        for temp in store.values():
             m = len(temp)
 
             if m >= 3:
@@ -17,6 +17,6 @@ class Solution:
                     c = temp[i + 2]
 
                     diff = 2 * (c - a)
-                    store = min(store, diff)
+                    mini = min(mini, diff)
 
-        return -1 if store == float('inf') else store
+        return -1 if mini == float('inf') else mini
