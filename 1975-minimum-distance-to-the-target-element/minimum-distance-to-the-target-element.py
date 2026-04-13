@@ -4,7 +4,7 @@ class Solution:
         
         for i in range(start,-1,-1):
             if nums[i] == target:
-                ans = min(ans,start - i)
+                ans = start - i
                 break
 
         for i in range(start,len(nums)):
