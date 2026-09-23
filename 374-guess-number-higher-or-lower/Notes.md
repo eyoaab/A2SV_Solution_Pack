@@ -1,1 +1,1 @@
-<h2>guess-number-higher-or-lower Notes</h2><hr>[ Time taken: 24 s ]
+<h2>guess-number-higher-or-lower Notes</h2><hr>[ Time taken: 2m 38s ]
