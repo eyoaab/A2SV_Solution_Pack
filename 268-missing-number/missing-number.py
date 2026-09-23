@@ -1,10 +1,16 @@
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        xor = 0
-        for num in nums:
-            xor ^= num
+    def missingNumber(self, nums: list[int]) -> int:
+        left = 0
+        right = len(nums) - 1
+        nums.sort()
+        best = len(nums)
 
-        for num in range(len(nums) + 1):
-            xor ^= num
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] > mid:
+                right = mid - 1
+                best = mid
+            else:
+                left = mid  + 1
 
-        return xor       
+        return best           
