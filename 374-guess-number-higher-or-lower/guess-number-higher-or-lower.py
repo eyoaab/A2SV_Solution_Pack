@@ -7,16 +7,17 @@
 
 class Solution:
     def guessNumber(self, n: int) -> int:
-        def binary_search(left,right):
-            mid = (right + left) // 2
-            
-            if  guess(mid) == -1:
-                return binary_search(left ,  mid - 1)
-            elif  guess(mid)  == 1:
-                return binary_search(mid + 1,right)
+        left = 1
+        right = n
+
+        while left <= right:
+            mid = (left + right) // 2
+            val = guess(mid)
+            if val == -1:
+                right = mid - 1
+            elif val == 1:
+                left = mid + 1
             else:
                 return mid
 
-        return binary_search(0,n)
-
-        
+        return 0                
