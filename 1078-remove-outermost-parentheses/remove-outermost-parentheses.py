@@ -1,16 +1,22 @@
 class Solution:
     def removeOuterParentheses(self, s: str) -> str:
-        result = []
-        balance = 0
+        count = 0
+        ans = []
 
         for char in s:
-            if char == '(':
-                if balance > 0:
-                    result.append(char)
-                balance += 1
-            else: 
-                balance -= 1
-                if balance > 0:
-                    result.append(char)
-                    
-        return ''.join(result)
+            
+            if char is "(":
+                if count:
+                    ans.append(char)
+
+                count += 1
+            else:
+                count -= 1
+                if count:
+                    ans.append(char)
+
+
+
+
+
+        return "".join(ans)
